@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">nori-daycare-app</string>
+    <string name="title_activity_main">nori-daycare-app</string>
+    <string name="package_name">com.nori.daycare</string>
+    <string name="custom_url_scheme">com.nori.daycare</string>
+</resources>
