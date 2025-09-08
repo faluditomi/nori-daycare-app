@@ -21,6 +21,7 @@
     "@capacitor/cli": "^7.4.3",
     "@capacitor/core": "^7.4.3",
     "@capacitor/local-notifications": "^7.0.2",
+    "sql-template-tag": "^5.2.1",
     "vue": "^3.5.18"
   },
   "devDependencies": {
