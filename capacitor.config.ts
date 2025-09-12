@@ -1,9 +1,9 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'com.nori.daycare',
-  appName: 'nori-daycare-app',
-  webDir: 'dist'
-};
+  appId: 'com.example.myapp',
+  appName: 'MyApp',
+  webDir: 'dist',
+}
 
-export default config;
+export default config
