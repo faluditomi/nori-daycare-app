@@ -2,6 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import i18n from './i18n'
+import './styles/main.css'
+
+// theme initialization
+const saved = localStorage.getItem('theme')
+document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light')
 
 const app = createApp(App)
 app.use(router)

@@ -60,6 +60,7 @@ export async function initDb() {
     );
     CREATE TABLE IF NOT EXISTS notes (
       id INTEGER PRIMARY KEY,
+      title TEXT,
       text TEXT,
       date_created TEXT NOT NULL,
       date_last_modified TEXT

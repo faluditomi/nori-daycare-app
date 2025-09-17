@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'com.example.myapp',
-  appName: 'MyApp',
+  appId: 'com.nori.daycare',
+  appName: 'NoriDaycare',
   webDir: 'dist',
 }
 
