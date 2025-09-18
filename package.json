@@ -13,7 +13,8 @@
     "build-only": "vite build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "type-check": "vue-tsc --noEmit -p tsconfig.json"
+    "type-check": "vue-tsc --noEmit -p tsconfig.json",
+    "pull-db": "adb exec-out run-as com.nori.daycare cat databases/nori-daycare-app.db > ./db_dump/nori-daycare-app.db"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^7.0.1",

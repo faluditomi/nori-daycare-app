@@ -1,22 +1,19 @@
 <template>
-  <div class="flex items-center p-3 bg-white rounded-xl shadow">
-    <div class="w-6 h-6 rounded-full mr-3" :style="{ backgroundColor: props.profile.colour }"></div>
-    <div>
-      <div class="font-semibold">{{ props.profile.name }}</div>
-      <div class="text-sm text-gray-500">{{ props.profile.note }}</div>
+  <div
+    class="flex justify-between items-center p-4 mb-3 bg-white border rounded-xl shadow-sm hover:shadow-md transition"
+  >
+    <div class="flex flex-col">
+      <span class="text-lg font-semibold text-gray-800">{{ name }}</span>
     </div>
+    <router-link :to="`/profiles/${id}`" class="text-blue-600 hover:text-blue-800 text-sm">
+      View →
+    </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
-interface Profile {
+defineProps<{
   id: number
   name: string
-  note: string
-  colour: string
-}
-
-const props = defineProps<{
-  profile: Profile
 }>()
 </script>

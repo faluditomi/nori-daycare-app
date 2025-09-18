@@ -4,7 +4,7 @@ import sql from 'sql-template-tag'
 let sqlite: SQLiteConnection
 let db: SQLiteDBConnection | null = null
 
-export async function initDb() {
+export async function getDB(): Promise<SQLiteDBConnection> {
   if (!sqlite) {
     sqlite = new SQLiteConnection(CapacitorSQLite)
   }
@@ -12,6 +12,8 @@ export async function initDb() {
   if (!db) {
     db = await sqlite.createConnection('nori-daycare-app', false, 'no-encryption', 1, false)
     await db.open()
+  } else {
+    return db
   }
 
   //TODO: add the 'default' non-deletable profile after the tables are created
@@ -70,19 +72,3 @@ export async function initDb() {
 
   return db
 }
-
-//TODO: define helper functions based on these examples
-// export async function addProfile(name: string, birthday?: string, notes?: string) {
-//   const database = await initDb()
-//   await database.run(`INSERT INTO profiles (name, birthday, notes) VALUES (?, ?, ?)`, [
-//     name,
-//     birthday ?? null,
-//     notes ?? null,
-//   ])
-// }
-
-// export async function getProfiles() {
-//   const database = await initDb()
-//   const res = await database.query(`SELECT * FROM profiles`)
-//   return res.values ?? []
-// }
