@@ -26,14 +26,14 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/ProfileCard.vue'
-import { getProfiles } from '@/services/dbService.ts'
+import { getAllProfiles } from '@/services/dbService.ts'
 import type { Profile } from '@/types/Profile'
 
 const router = useRouter()
 const profiles = ref<Profile[]>([])
 
 onMounted(async () => {
-  profiles.value = await getProfiles()
+  profiles.value = await getAllProfiles()
 })
 
 function goToCreateProfile() {

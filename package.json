@@ -14,7 +14,8 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "type-check": "vue-tsc --noEmit -p tsconfig.json",
-    "pull-db": "adb exec-out run-as com.nori.daycare cat databases/nori-daycare-app.db > ./db_dump/nori-daycare-app.db"
+    "pull-db": "adb exec-out run-as com.nori.daycare cat databases/nori-daycare-appSQLite.db > ./nori-daycare-app.db",
+    "scrap-db": "adb shell run-as com.nori.daycare rm databases/nori-daycare-appSQLite.db"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^7.0.1",

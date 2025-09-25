@@ -13,3 +13,7 @@
   --colour-text: #eee;
   --colour-accent: #a259ff;
 }
+
+body {
+  background: var(--colour-bg);
+}
