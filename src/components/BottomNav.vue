@@ -27,40 +27,11 @@ import {
   UserGroupIcon,
 } from '@heroicons/vue/24/solid'
 import { useRoute } from 'vue-router'
+import '@/styles/main.css'
 
 function isActive(path: string) {
   return useRoute().path === path ? 'active' : ''
 }
 </script>
 o
-<style scoped>
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: var(--colour-nav-bg);
-  border-top: 1px solid var(--colour-border);
-  padding: 8px 0;
-}
-.nav-item {
-  transition:
-    fill 0.2s,
-    transform 0.2s;
-}
-.nav-item svg {
-  width: 2rem;
-  height: 2rem;
-  fill: var(--colour-text);
-}
-.nav-item:active {
-  transform: scale(0.8);
-}
-.nav-item.active svg {
-  fill: var(--colour-accent);
-  transform: scale(1.1);
-}
-</style>
+<style scoped></style>

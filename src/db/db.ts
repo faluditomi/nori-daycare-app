@@ -16,12 +16,21 @@ export async function getDB(): Promise<SQLiteDBConnection> {
   if (!db) {
     const version = migrations.length
 
-    db = await sqlite.createConnection('nori-daycare-app', false, 'no-encryption', version, false)
-    await db.open()
+    // register upgrade path once
+    await sqlite.addUpgradeStatement('nori-daycare-app', [
+      {
+        toVersion: 1,
+        statements: [migrations[0]], // 1__init
+      },
+      {
+        toVersion: 2,
+        statements: [migrations[1]], // 2__seed_db
+      },
+    ])
 
-    for (const migration of migrations) {
-      await db.execute(migration)
-    }
+    db = await sqlite.createConnection('nori-daycare-app', false, 'no-encryption', version, false)
+
+    await db.open()
   }
 
   return db

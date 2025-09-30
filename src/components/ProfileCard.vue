@@ -1,19 +1,31 @@
 <template>
   <div
-    class="flex justify-between items-center p-4 mb-3 bg-white border rounded-xl shadow-sm hover:shadow-md transition"
+    class="profile-card flex items-center justify-between px-5 py-4 w-full rounded-2xl shadow-sm transition active:scale-95"
+    @click="$emit('click', id)"
   >
-    <div class="flex flex-col">
-      <span class="text-lg font-semibold text-gray-800">{{ name }}</span>
-    </div>
-    <router-link :to="`/profiles/${id}`" class="text-blue-600 hover:text-blue-800 text-sm">
-      View →
-    </router-link>
+    <!-- Left side: profile name -->
+    <span class="text-lg font-semibold truncate">
+      {{ name }}
+    </span>
+
+    <!-- Right side: arrow -->
+    <ChevronRightIcon class="w-6 h-6 text-[var(--colour-text-muted)]" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ChevronRightIcon } from '@heroicons/vue/24/solid'
+
 defineProps<{
   id: number
   name: string
 }>()
 </script>
+
+<style scoped>
+.profile-card {
+  background-color: var(--colour-card-bg);
+  border: 1px solid var(--colour-border);
+  color: var(--colour-text);
+}
+</style>

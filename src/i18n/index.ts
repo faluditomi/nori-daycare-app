@@ -2,18 +2,27 @@ import { createI18n } from 'vue-i18n'
 
 const messages = {
   en: {
-    profiles: 'Profiles',
+    profiles: {
+      title: 'Profiles',
+      empty: 'No profiles yet.',
+    },
   },
   hu: {
-    profiles: 'Profilok',
+    profiles: {
+      title: 'Profilok',
+      empty: 'Még nincs profil.',
+    },
   },
   it: {
-    profiles: 'woopty hoopty',
+    profiles: {
+      title: 'woopty hoopty',
+      empty: 'Nessun profilo ancora.',
+    },
   },
 }
 
 const i18n = createI18n({
-  locale: 'hu', // default
+  locale: 'hu',
   fallbackLocale: 'hu',
   messages,
 })

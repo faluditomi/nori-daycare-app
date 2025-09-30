@@ -3,7 +3,11 @@
   --colour-nav-bg: #fff;
   --colour-border: #ccc;
   --colour-text: #222;
+  --colour-text-muted: #666;
   --colour-accent: #7c2ae8;
+  --colour-dark-accent: #3c1a67;
+  --colour-card-bg: #fff;
+  --colour-danger: #e63946;
 }
 
 [data-theme='dark'] {
@@ -11,9 +15,109 @@
   --colour-nav-bg: #232336;
   --colour-border: #333;
   --colour-text: #eee;
+  --colour-text-muted: #aaa;
   --colour-accent: #a259ff;
+  --colour-dark-accent: #4f1f8e;
+  --colour-card-bg: #5f5f6c;
+  --colour-danger: #ff6b6b;
+}
+
+@font-face {
+  font-family: 'Cabin';
+  src: url('@/assets/fonts/Cabin-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cabin';
+  src: url('@/assets/fonts/Cabin-Italic-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
 }
 
 body {
+  overflow: hidden;
   background: var(--colour-bg);
+  font-family: 'Cabin', system-ui, sans-serif;
+}
+
+.header-title {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4.5rem;
+  margin: 0;
+  line-height: 3.2rem;
+  position: fixed;
+  font-size: medium;
+  color: var(--colour-text);
+  background-color: var(--colour-bg);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3.7rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--colour-nav-bg);
+  border-top: 1px solid var(--colour-border);
+  z-index: 100;
+}
+.nav-item {
+  transition:
+    fill 0.2s,
+    transform 0.2s;
+}
+.nav-item svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--colour-text);
+}
+.nav-item:active {
+  transform: scale(0.8);
+}
+.nav-item.active svg {
+  fill: var(--colour-accent);
+  transform: scale(1.1);
+}
+
+.list-view {
+  position: absolute;
+  top: 4.5rem;
+  bottom: 3.7rem;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  overscroll-behavior: none;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  column-gap: 20rem;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 4.7rem;
+  right: 1rem;
+  background: var(--colour-nav-bg);
+  color: var(--colour-accent);
+  border-radius: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  z-index: 100;
+  transition: transform 0.1s;
+  border: none;
+}
+.add-button svg {
+  transform: scale(1);
+}
+.add-button:active {
+  transform: scale(0.8);
 }
