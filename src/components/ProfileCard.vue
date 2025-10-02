@@ -1,20 +1,18 @@
 <template>
-  <div
-    class="profile-card flex items-center justify-between px-5 py-4 w-full rounded-2xl shadow-sm transition active:scale-95"
-    @click="$emit('click', id)"
-  >
-    <!-- Left side: profile name -->
-    <span class="text-lg font-semibold truncate">
+  <div class="list-element" @click="$emit('click', id)">
+    <!-- profile name -->
+    <span class="name">
       {{ name }}
     </span>
 
-    <!-- Right side: arrow -->
-    <ChevronRightIcon class="w-6 h-6 text-[var(--colour-text-muted)]" />
+    <!-- arrow -->
+    <ChevronRightIcon />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ChevronRightIcon } from '@heroicons/vue/24/solid'
+import '@/styles/main.css'
 
 defineProps<{
   id: number
@@ -22,10 +20,4 @@ defineProps<{
 }>()
 </script>
 
-<style scoped>
-.profile-card {
-  background-color: var(--colour-card-bg);
-  border: 1px solid var(--colour-border);
-  color: var(--colour-text);
-}
-</style>
+<style scoped></style>

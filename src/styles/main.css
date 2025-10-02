@@ -1,24 +1,24 @@
 :root {
   --colour-bg: #f8f8fa;
   --colour-nav-bg: #fff;
-  --colour-border: #ccc;
+  --colour-border: #777777;
   --colour-text: #222;
   --colour-text-muted: #666;
   --colour-accent: #7c2ae8;
   --colour-dark-accent: #3c1a67;
-  --colour-card-bg: #fff;
+  --colour-list-element-bg: #fff;
   --colour-danger: #e63946;
 }
 
 [data-theme='dark'] {
   --colour-bg: #181824;
   --colour-nav-bg: #232336;
-  --colour-border: #333;
+  --colour-border: #777777;
   --colour-text: #eee;
-  --colour-text-muted: #aaa;
+  --colour-text-muted: #b3b3b3;
   --colour-accent: #a259ff;
   --colour-dark-accent: #4f1f8e;
-  --colour-card-bg: #5f5f6c;
+  --colour-list-element-bg: #5f5f6c;
   --colour-danger: #ff6b6b;
 }
 
@@ -46,7 +46,7 @@ body {
 
 .header-title {
   top: 0;
-  left: 0;
+  left: 0.5rem;
   width: 100%;
   height: 4.5rem;
   margin: 0;
@@ -120,4 +120,42 @@ body {
 }
 .add-button:active {
   transform: scale(0.8);
+}
+
+/* colour and size are set per property */
+.list-element {
+  background-color: var(--colour-list-element-bg);
+  border: 2px solid var(--colour-dark-accent);
+  color: var(--colour-text);
+  display: flex;
+  width: 95%;
+  align-items: center;
+  align-self: center;
+  padding: 0rem 1rem;
+  /* border-radius: 5%; */
+}
+.list-element-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.list-element .name {
+  font-size: xx-large;
+  font-weight: bold;
+  color: var(--colour-text);
+}
+.list-element svg {
+  width: 4.5rem;
+  height: 4.5rem;
+  color: var(--colour-accent);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.empty-list-text {
+  color: var(--colour-text-muted);
+  font-style: italic;
+  font-size: large;
+  text-align: center;
+  margin-top: 5.5rem;
 }

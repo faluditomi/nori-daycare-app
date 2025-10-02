@@ -6,9 +6,9 @@
     </h1>
   </header>
 
-  <div class="list-view">
+  <div v-if="profiles.length > 0" class="list-view">
     <!-- content -->
-    <div v-if="-1 > 0">
+    <div>
       <!-- <ProfileCard
         v-for="profile in profiles"
         :key="profile.id"
@@ -20,10 +20,10 @@
       <ProfileCard :key="1" :id="1" :name="'Riedl Nóra'" @click="goToProfileDetail(1)" />
       <ProfileCard :key="1" :id="1" :name="'Riedl Nóra'" @click="goToProfileDetail(1)" />
     </div>
-    <p v-else class="text-[var(--colour-text-muted)] italic text-center mt-10">
-      {{ $t('profiles.empty') }}
-    </p>
   </div>
+  <p v-if="profiles.length < +0" class="empty-list-text">
+    {{ $t('profiles.empty') }}
+  </p>
 
   <!-- floating add button -->
   <button class="add-button" @click="goToCreateProfile" aria-label="Add profile">
@@ -50,7 +50,7 @@ onMounted(async () => {
 })
 
 function goToCreateProfile() {
-  router.push('/profiles/create')
+  router.push('/profiles/add')
 }
 
 function goToProfileDetail(id: number) {
