@@ -9,16 +9,13 @@
   <div v-if="profiles.length > 0" class="list-view">
     <!-- content -->
     <div>
-      <!-- <ProfileCard
+      <ProfileCard
         v-for="profile in profiles"
         :key="profile.id"
         :id="profile.id"
         :name="profile.name"
         @click="goToProfileDetail(profile.id)"
-      /> -->
-      <ProfileCard :key="1" :id="1" :name="'Riedl Nóra'" @click="goToProfileDetail(1)" />
-      <ProfileCard :key="1" :id="1" :name="'Riedl Nóra'" @click="goToProfileDetail(1)" />
-      <ProfileCard :key="1" :id="1" :name="'Riedl Nóra'" @click="goToProfileDetail(1)" />
+      />
     </div>
   </div>
   <p v-if="profiles.length < +0" class="empty-list-text">
