@@ -6,12 +6,12 @@
     </span>
 
     <!-- arrow -->
-    <ChevronRightIcon />
+    <ArrowLongRightIcon />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ChevronRightIcon } from '@heroicons/vue/24/solid'
+import { ArrowLongRightIcon } from '@heroicons/vue/24/solid'
 import '@/styles/main.css'
 
 defineProps<{

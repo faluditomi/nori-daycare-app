@@ -1,16 +1,17 @@
 <template>
-  <div class="p-4 pb-24 bg-[var(--colour-bg)] min-h-screen">
-    <!-- Back button -->
-    <button
-      @click="goBack"
-      class="flex items-center gap-1 text-[var(--colour-accent)] hover:underline mb-4"
-    >
-      <ArrowLeftIcon class="w-5 h-5" />
-      <span>{{ $t('common.back') }}</span>
+  <!-- header / back button -->
+  <header class="header-title">
+    <button @click="goBack" aria-label="Back">
+      <ArrowLeftIcon />
     </button>
+    <h1>
+      {{ profile?.name }}
+    </h1>
+  </header>
 
-    <div v-if="profile" class="space-y-6">
-      <!-- Profile header -->
+  <div class="details-view">
+    <div v-if="profile">
+      <!-- profile header -->
       <div class="bg-[var(--colour-card-bg)] rounded-xl shadow p-6">
         <h1 class="text-2xl font-bold text-[var(--colour-text)]">
           {{ profile.name }}
@@ -58,6 +59,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { getProfileById } from '@/services/dbService.ts'
 import type { Profile } from '@/types/Profile'
 import { ArrowLeftIcon } from '@heroicons/vue/24/solid'
+import '@/styles/main.css'
 
 const route = useRoute()
 const router = useRouter()
@@ -72,3 +74,5 @@ function goBack() {
   router.back()
 }
 </script>
+
+<style scoped></style>
