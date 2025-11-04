@@ -9,48 +9,56 @@
     </h1>
   </header>
 
-  <div class="details-view">
-    <div v-if="profile">
-      <!-- profile header -->
-      <div class="bg-[var(--colour-card-bg)] rounded-xl shadow p-6">
-        <h1 class="text-2xl font-bold text-[var(--colour-text)]">
-          {{ profile.name }}
-        </h1>
-        <p v-if="profile.note" class="text-[var(--colour-text-muted)] mt-2">
-          {{ profile.note }}
-        </p>
+  <div v-if="profile" class="details-view">
+    <!-- editable note -->
+    <h2 class="header-one">
+      {{ $t('profiles.note') }}
+    </h2>
+    <div class="note-input">
+      <p v-if="!isEditingNote" @click="startEditNote" aria-label="Edit note">
+        {{ profile.note || $t('profiles.noNotePlaceholder') }}
+      </p>
+      <div v-else>
+        <textarea v-model="editedNote" rows="4" class="note-textarea" />
+        <div class="actions">
+          <button @click="saveNote" class="button">
+            {{ $t('common.save') }}
+          </button>
+          <button @click="cancelEditNote" class="button">
+            {{ $t('common.cancel') }}
+          </button>
+        </div>
       </div>
-
-      <!-- Activities -->
-      <section class="bg-[var(--colour-card-bg)] rounded-xl shadow p-5">
-        <h2 class="text-lg font-semibold text-[var(--colour-text)] mb-2">
-          {{ $t('profiles.activities') }}
-        </h2>
-        <p class="text-sm text-[var(--colour-text-muted)] italic">
-          ({{ $t('profiles.activitiesPlaceholder') }})
-        </p>
-      </section>
-
-      <!-- Going-home Times -->
-      <section class="bg-[var(--colour-card-bg)] rounded-xl shadow p-5">
-        <h2 class="text-lg font-semibold text-[var(--colour-text)] mb-2">
-          {{ $t('profiles.goingHomeTimes') }}
-        </h2>
-        <p class="text-sm text-[var(--colour-text-muted)] italic">
-          ({{ $t('profiles.goingHomePlaceholder') }})
-        </p>
-      </section>
-
-      <!-- Danger zone -->
-      <button
-        class="w-full bg-[var(--colour-danger)] text-white px-4 py-3 rounded-xl shadow hover:bg-[var(--colour-danger-hover)] transition active:scale-95"
-      >
-        {{ $t('profiles.deleteProfile') }}
-      </button>
     </div>
 
-    <p v-else class="text-[var(--colour-text-muted)]">{{ $t('common.loading') }}</p>
+    <!-- Activities -->
+    <section class="bg-[var(--colour-card-bg)] rounded-xl shadow p-5">
+      <h2 class="text-lg font-semibold text-[var(--colour-text)] mb-2">
+        {{ $t('profiles.activities') }}
+      </h2>
+      <p class="text-sm text-[var(--colour-text-muted)] italic">
+        ({{ $t('profiles.activitiesPlaceholder') }})
+      </p>
+    </section>
+
+    <!-- Going-home Times -->
+    <section class="bg-[var(--colour-card-bg)] rounded-xl shadow p-5">
+      <h2 class="text-lg font-semibold text-[var(--colour-text)] mb-2">
+        {{ $t('profiles.goingHomeTimes') }}
+      </h2>
+      <p class="text-sm text-[var(--colour-text-muted)] italic">
+        ({{ $t('profiles.goingHomePlaceholder') }})
+      </p>
+    </section>
+
+    <!-- Danger zone -->
+    <button
+      class="w-full bg-[var(--colour-danger)] text-white px-4 py-3 rounded-xl shadow hover:bg-[var(--colour-danger-hover)] transition active:scale-95"
+    >
+      {{ $t('profiles.deleteProfile') }}
+    </button>
   </div>
+  <p v-else class="text-[var(--colour-text-muted)]">{{ $t('common.loading') }}</p>
 </template>
 
 <script setup lang="ts">
@@ -65,13 +73,40 @@ const route = useRoute()
 const router = useRouter()
 const profile = ref<Profile | null>(null)
 
+// new reactive state for note editing
+const isEditingNote = ref(false)
+const editedNote = ref('')
+
 onMounted(async () => {
   const id = Number(route.params.id)
   profile.value = await getProfileById(id)
+  // initialize editable note after loading profile
+  editedNote.value = profile.value?.note ?? ''
 })
 
 function goBack() {
   router.back()
+}
+
+function startEditNote() {
+  isEditingNote.value = true
+  editedNote.value = profile.value?.note ?? ''
+}
+
+function cancelEditNote() {
+  isEditingNote.value = false
+  editedNote.value = profile.value?.note ?? ''
+}
+
+async function saveNote() {
+  if (!profile.value) return
+  // apply locally
+  profile.value.note = editedNote.value
+  isEditingNote.value = false
+
+  // Persist change to backend if you have an update method.
+  // Uncomment and adapt to your DB service:
+  // await updateProfile(profile.value.id, { note: editedNote.value })
 }
 </script>
 

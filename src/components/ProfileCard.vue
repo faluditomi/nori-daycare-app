@@ -1,7 +1,7 @@
 <template>
   <div class="list-element" @click="$emit('click', id)">
     <!-- profile name -->
-    <span class="name">
+    <span class="header-one">
       {{ name }}
     </span>
 
